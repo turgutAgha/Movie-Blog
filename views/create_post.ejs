@@ -1,0 +1,71 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">    
+        <link rel="stylesheet" href="../public/css/style.css">
+        <title>Movie Post Project</title>
+    </head>
+    <body>
+        <main class="container">
+            <header class="site-header">
+                <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+                    <div class="container">
+                        <a class="navbar-brand mr-4" href="/">Movie Blog</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarToggle">
+                            <div class="navbar-nav mr-auto">
+                                <a href="/" class="nav-item nav-link" role="button" class="secondary">Home</a>
+                            </div>
+                            <!-- Navbar Right Side -->
+                            <div class="navbar-nav">
+                                <% if(loggedIn) {%>
+                                    <a href="/create_post" class="nav-item nav-link" role="button" class="secondary">Create Post</a>
+                                    <a href="/profile" class="nav-item nav-link" role="button" class="secondary">Profile</a>
+                                    <a href="/logout" class="nav-item nav-link" role="button" class="secondary">Logout</a>
+                                <% }else{ %>
+                                    <a href="/register" class="nav-item nav-link" role="button" class="secondary">Register</a>
+                                    <a href="/login" class="nav-item nav-link" role="button" class="secondary">Login</a>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+            <hr>
+            <% if(!loggedIn){ %>
+                <h2>Please, <a href="/login" role="button" class="secondary">login</a> to create a post</h2>
+            <% } else { %>
+                <h1> Create Post </h1>
+                <% if(message){ %>
+                    <div class="success"> 
+                        <p> <%= message %> </p>
+                    </div>
+                <% } %>
+                <% if(valid){ %>
+                    <div class="error"> 
+                        <% valid.forEach( (elm) => { %>
+                            <p> <%= elm.msg %> </p>
+                        <% }) %>
+                    </div>
+                <% } %>
+                <form action="/create_post" method="POST">
+                    <fieldset>
+                        <label for="movie_title">Movie title</label>
+                        <input type="text" name="movie_title" >
+                        <br>
+                        <label for="content">Content</label>
+                        <input type="text" name="content" >
+                        <br><br>
+                        <input type="submit" value="Create Post" class="secondary outline">
+                    </fieldset>
+                </form>
+            <% } %>
+        </main>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>    
+    </body>
+</html>
