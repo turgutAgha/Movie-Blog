@@ -3,7 +3,6 @@ CREATE DATABASE movie_post_project;
 
 use movie_post_project;
 
-
 CREATE TABLE `users` (
     `username` varchar(30) NOT NULL,
     `password` varchar(255) NOT NULL,
@@ -20,7 +19,3 @@ CREATE TABLE `posts` (
     CONSTRAINT FK_author FOREIGN KEY (author)
     REFERENCES users(username)
 );
-
-INSERT INTO posts(movie_title, content, author)
-VALUES
-("Forrest Gump", "One of the best movies", "turqutagasov");
