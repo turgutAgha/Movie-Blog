@@ -12,7 +12,9 @@ This demo website is intended for Back-end Course.
 npm install
 ```
 
-4. Run app.js
+4. Create a database and tables in MySQL using database.sql
+
+5. Run app.js
 ```
 node app.js
 ```
